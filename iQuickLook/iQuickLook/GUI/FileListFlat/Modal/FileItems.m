@@ -6,7 +6,7 @@
 //
 //
 
-#define kThumbnailWidth					154
+#define kThumbnailWidth					(154 * 2)
 #define kThumbnailFolderName			@".thumbnail"
 
 #import "FileItems.h"
@@ -21,6 +21,9 @@
 @end
 
 @interface FileItemsInFolder()
+{
+	NSOperation* _fetchThumbnailOpt;
+}
 
 - (NSString*)_thumbnailPathForFile: (FileItem*)file;
 - (UIImage*)_fetchFileThumbnail: (FileItem*)file;
@@ -73,10 +76,19 @@
 
 - (void)fetchThumbnailsAsync:(FetchThumbnailResultBlock)block
 {
-	[[NSOperationQueue globalQueue] addOperationWithBlock:^
+	if ([_fetchThumbnailOpt isExecuting])
+		return;
+	
+	NSBlockOperation* blockOpt = [NSBlockOperation new];
+	NSOperation* weakOpt = blockOpt;
+	
+	[blockOpt addExecutionBlock:^
 	{
 		for (FileItem* file in _fileItems)
 		{
+			if ([weakOpt isCancelled])
+				break;
+			
 			if ((file.isFolder && !file.folderCover) ||
 				(!file.isFolder && !file.fileThumbnail))
 			{
@@ -89,10 +101,17 @@
 				{
 					FileItemsInFolder* fileItems = [[FileItemsInFolder alloc] initWithFolderPath:file.path];
 					NSArray* files = [fileItems fileItems];
-					if ([files count])
+					for (FileItem* file in files)
 					{
-						FileItem* firstFile = [files firstObject];
-						thumbnail = [self _fetchFileThumbnail:firstFile];
+						if (!file.isFolder)
+						{
+							NSAssert([file.path isImageExtension], nil);
+							
+							FileItem* firstFile = [files firstObject];
+							thumbnail = [self _fetchFileThumbnail:firstFile];
+							
+							break;
+						}
 					}
 				}
 				
@@ -104,13 +123,22 @@
 						file.folderCover = thumbnail;
 					
 					[[NSOperationQueue mainQueue] addOperationWithBlock:^
-					{
-						block(file);
-					}];
+					 {
+						 block(file);
+					 }];
 				}
 			}
 		}
 	}];
+	
+	[[NSOperationQueue globalQueue] addOperation:blockOpt];
+	
+	_fetchThumbnailOpt = blockOpt;
+}
+
+- (void)cancelFetchThumbnails
+{
+	[_fetchThumbnailOpt cancel];
 }
 
 - (NSString*)_thumbnailPathForFile: (FileItem*)file;

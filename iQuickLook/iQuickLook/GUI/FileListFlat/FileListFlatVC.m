@@ -36,7 +36,16 @@
 
 	_filesInFolder = [[FileItemsInFolder alloc] initWithFolderPath:self.folderPath];
 
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
 	[self _reloadData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[_filesInFolder cancelFetchThumbnails];
 }
 
 - (void)setFolderPath:(NSString *)folderPath
