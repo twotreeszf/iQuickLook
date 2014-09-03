@@ -15,8 +15,7 @@
 @property (nonatomic, copy)		NSString*	iNode;
 
 @property (nonatomic, assign)	BOOL		isFolder;
-@property (nonatomic, strong)	UIImage*	folderCover;
-@property (nonatomic, strong)	UIImage*	fileThumbnail;
+@property (nonatomic, strong)	UIImage*	thumbnail;
 
 @end
 
@@ -30,7 +29,7 @@ typedef void (^FetchThumbnailResultBlock)(FileItem* file);
 
 - (instancetype)initWithFolderPath: (NSString*)folderPath;
 - (NSArray*)fileItems;
-- (void)fetchThumbnailsAsync: (FetchThumbnailResultBlock)block;
+- (void)fetchThumbnailsAsyncForFiles: (NSArray*)files : (FetchThumbnailResultBlock)block;
 - (void)cancelFetchThumbnails;
 
 @end

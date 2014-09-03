@@ -10,7 +10,7 @@
 
 @interface UIImage (vImage)
 
-- (UIImage*)vImageScaledImageForSquare: (CGFloat)sideLen;
-- (UIImage*)vImageScaledImageWithSize: (CGSize)destSize;
+- (UIImage*)vImageScaledImageForSquare: (CGFloat)sideLen : (BOOL)highQuality;
+- (UIImage*)vImageScaledImageWithSize: (CGSize)destSize : (BOOL)highQuality;
 
 @end

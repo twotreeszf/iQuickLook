@@ -23,6 +23,7 @@
 }
 
 - (void)_reloadData;
+- (void)_updateThumbnailFromVisibelCell;
 - (void)_updateCellWithFileItem: (UICollectionViewCell*)cell : (FileItem*)file;
 
 @end
@@ -38,7 +39,7 @@
 
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
 	[self _reloadData];
 }
@@ -81,6 +82,17 @@
 	return cell;
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+	[self _updateThumbnailFromVisibelCell];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+	if (!decelerate)
+		[self _updateThumbnailFromVisibelCell];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	if ([segue.identifier isEqualToString:@"BrowseFolder"])
@@ -112,11 +124,32 @@
 - (void)_reloadData
 {
 	_fileList = [_filesInFolder fileItems];
-	
 	[self.collectionView reloadData];
+
+	[self _updateThumbnailFromVisibelCell];
+}
+
+- (void)_updateThumbnailFromVisibelCell
+{
+	NSArray* visibleCells = [self.collectionView visibleCells];
+	NSInteger firstCell = [visibleCells count];
+	
+	for (UICollectionViewCell* cell in visibleCells)
+	{
+		NSUInteger currentIndex = [self.collectionView indexPathForCell:cell].row;
+		if (currentIndex < firstCell)
+			firstCell = currentIndex;
+	}
+
+	NSMutableArray* files2Update = [NSMutableArray new];
+	for (NSInteger i = firstCell; i < [_fileList count]; ++i)
+		[files2Update addObject:[_fileList objectAtIndex:i]];
+	
+	for (NSInteger i = firstCell - 1; i >= 0; --i)
+		[files2Update addObject:[_fileList objectAtIndex:i]];
 	
 	__weak FileListFlatVC* weakSelf = self;
-	[_filesInFolder fetchThumbnailsAsync:^(FileItem *file)
+	[_filesInFolder fetchThumbnailsAsyncForFiles:files2Update : ^(FileItem *file)
 	 {
 		 NSUInteger index = [_fileList indexOfObject:file];
 		 UICollectionViewCell* cell = [weakSelf.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
@@ -130,8 +163,8 @@
 	if (!file.isFolder)
 	{
 		ImageCell* imageCell = (ImageCell*)cell;
-		if (file.fileThumbnail)
-			imageCell.imageThumbnail.image = file.fileThumbnail;
+		if (file.thumbnail)
+			imageCell.imageThumbnail.image = file.thumbnail;
 		else
 			imageCell.imageThumbnail.image = [UIImage imageNamed:@"Image.png"];
 	}
@@ -140,8 +173,8 @@
 		FolderCell* folderCell = (FolderCell*)cell;
 		
 		folderCell.folderName.text = file.name;
-		if (file.folderCover)
-			folderCell.folderCover.image = file.folderCover;
+		if (file.thumbnail)
+			folderCell.folderCover.image = file.thumbnail;
 	}
 }
 

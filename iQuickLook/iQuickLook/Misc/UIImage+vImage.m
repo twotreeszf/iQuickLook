@@ -11,7 +11,8 @@
 
 @implementation UIImage (vImage)
 
-- (UIImage*)vImageScaledImageForSquare: (CGFloat)sideLen
+
+- (UIImage*)vImageScaledImageForSquare: (CGFloat)sideLen : (BOOL)highQuality;
 {
 	CGFloat width = self.size.width;
 	CGFloat height = self.size.height;
@@ -29,10 +30,10 @@
 		destHeight = (height / width) * destWidth;
 	}
 	
-	return [self vImageScaledImageWithSize:CGSizeMake(destWidth, destHeight)];
+	return [self vImageScaledImageWithSize:CGSizeMake(destWidth, destHeight) : highQuality];
 }
 
-- (UIImage*)vImageScaledImageWithSize: (CGSize)destSize;
+- (UIImage*)vImageScaledImageWithSize: (CGSize)destSize : (BOOL)highQuality
 {
     UIImage *destImage = nil;
 	
@@ -79,7 +80,7 @@
 											 &src,
 											 &dest,
 											 NULL,
-											 kvImageHighQualityResampling
+											 highQuality ? kvImageHighQualityResampling : kvImageNoFlags
 											 );
 	
 	// The source bytes are no longer needed.
@@ -102,7 +103,7 @@
 	
 	// The destination bytes are no longer needed.
 	free(destData);
-
+	
 	NSAssert(kvImageNoError == err, nil);
     return destImage;
 }

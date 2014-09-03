@@ -32,6 +32,8 @@
 		7DFB96F019AE090C002E86EF /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DFB96EF19AE090C002E86EF /* Accelerate.framework */; };
 		7DFB96F219AEB637002E86EF /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DFB96F119AEB637002E86EF /* QuickLook.framework */; };
 		7DFB96F519AEB81A002E86EF /* ImagePrevewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB96F419AEB81A002E86EF /* ImagePrevewVC.m */; };
+		7DFB972D19B0709C002E86EF /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DFB972A19B0707A002E86EF /* libGPUImage.a */; };
+		7DFB973019B070DE002E86EF /* UIImage+GPUImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB972F19B070DE002E86EF /* UIImage+GPUImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +43,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7DFB968B19AD8633002E86EF;
 			remoteInfo = iQuickLook;
+		};
+		7DFB972919B0707A002E86EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7DFB972319B0707A002E86EF /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BCF1A33414DDB1EC00852800;
+			remoteInfo = GPUImage;
+		};
+		7DFB972B19B0707A002E86EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7DFB972319B0707A002E86EF /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BCE209E51943F20C002FEED8;
+			remoteInfo = GPUImageFramework;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -82,6 +98,10 @@
 		7DFB96F119AEB637002E86EF /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		7DFB96F319AEB81A002E86EF /* ImagePrevewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePrevewVC.h; sourceTree = "<group>"; };
 		7DFB96F419AEB81A002E86EF /* ImagePrevewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePrevewVC.m; sourceTree = "<group>"; };
+		7DFB972319B0707A002E86EF /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = ../3rdParty/GPUImage/GPUImage.xcodeproj; sourceTree = "<group>"; };
+		7DFB972E19B070DE002E86EF /* UIImage+GPUImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GPUImage.h"; sourceTree = "<group>"; };
+		7DFB972F19B070DE002E86EF /* UIImage+GPUImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GPUImage.m"; sourceTree = "<group>"; };
+		7DFB973219B096EE002E86EF /* ErrorCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorCheck.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DFB972D19B0709C002E86EF /* libGPUImage.a in Frameworks */,
 				7DFB96F219AEB637002E86EF /* QuickLook.framework in Frameworks */,
 				7DFB96F019AE090C002E86EF /* Accelerate.framework in Frameworks */,
 				7DFB969219AD8633002E86EF /* CoreGraphics.framework in Frameworks */,
@@ -132,6 +153,7 @@
 		7DFB968E19AD8633002E86EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7DFB972319B0707A002E86EF /* GPUImage.xcodeproj */,
 				7DFB96F119AEB637002E86EF /* QuickLook.framework */,
 				7DFB96EF19AE090C002E86EF /* Accelerate.framework */,
 				7DFB968F19AD8633002E86EF /* Foundation.framework */,
@@ -230,12 +252,15 @@
 		7DFB96DE19ADE969002E86EF /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				7DFB973219B096EE002E86EF /* ErrorCheck.h */,
 				7DFB96E919ADFD75002E86EF /* NSString+Format.h */,
 				7DFB96EA19ADFD75002E86EF /* NSString+Format.m */,
 				7DFB96DF19ADE969002E86EF /* NSOperationQueue+GlobalQueue.h */,
 				7DFB96E019ADE969002E86EF /* NSOperationQueue+GlobalQueue.m */,
 				7DFB96EC19AE05E7002E86EF /* UIImage+vImage.h */,
 				7DFB96ED19AE05E7002E86EF /* UIImage+vImage.m */,
+				7DFB972E19B070DE002E86EF /* UIImage+GPUImage.h */,
+				7DFB972F19B070DE002E86EF /* UIImage+GPUImage.m */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -247,6 +272,15 @@
 				7DFB96E719ADE9EE002E86EF /* FileItems.m */,
 			);
 			path = Modal;
+			sourceTree = "<group>";
+		};
+		7DFB972419B0707A002E86EF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7DFB972A19B0707A002E86EF /* libGPUImage.a */,
+				7DFB972C19B0707A002E86EF /* GPUImage.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,6 +349,12 @@
 			mainGroup = 7DFB968319AD8633002E86EF;
 			productRefGroup = 7DFB968D19AD8633002E86EF /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 7DFB972419B0707A002E86EF /* Products */;
+					ProjectRef = 7DFB972319B0707A002E86EF /* GPUImage.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				7DFB968B19AD8633002E86EF /* iQuickLook */,
@@ -322,6 +362,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		7DFB972A19B0707A002E86EF /* libGPUImage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGPUImage.a;
+			remoteRef = 7DFB972919B0707A002E86EF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7DFB972C19B0707A002E86EF /* GPUImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GPUImage.framework;
+			remoteRef = 7DFB972B19B0707A002E86EF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7DFB968A19AD8633002E86EF /* Resources */ = {
@@ -354,6 +411,7 @@
 				7DFB96EB19ADFD75002E86EF /* NSString+Format.m in Sources */,
 				7DFB96F519AEB81A002E86EF /* ImagePrevewVC.m in Sources */,
 				7DFB96A019AD8633002E86EF /* AppDelegate.m in Sources */,
+				7DFB973019B070DE002E86EF /* UIImage+GPUImage.m in Sources */,
 				7DFB96DD19ADB51A002E86EF /* ImageCell.m in Sources */,
 				7DFB969C19AD8633002E86EF /* main.m in Sources */,
 				7DFB96E819ADE9EE002E86EF /* FileItems.m in Sources */,
@@ -446,6 +504,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "../3rdParty/GPUImage/Source ../3rdParty/GPUImage/Source/iOS";
 			};
 			name = Debug;
 		};
@@ -478,6 +537,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "../3rdParty/GPUImage/Source ../3rdParty/GPUImage/Source/iOS";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -573,6 +633,7 @@
 				7DFB96C619AD8634002E86EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7DFB96C719AD8634002E86EF /* Build configuration list for PBXNativeTarget "iQuickLookTests" */ = {
 			isa = XCConfigurationList;
@@ -581,6 +642,7 @@
 				7DFB96C919AD8634002E86EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

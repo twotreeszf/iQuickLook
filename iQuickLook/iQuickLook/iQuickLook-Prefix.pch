@@ -17,6 +17,7 @@
 #import "Misc/NSOperationQueue+GlobalQueue.h"
 #import "Misc/NSString+Format.h"
 #import "Misc/UIImage+vImage.h"
-
+#import "Misc/UIImage+GPUImage.h"
+#import "Misc/ErrorCheck.h"
 
 #endif

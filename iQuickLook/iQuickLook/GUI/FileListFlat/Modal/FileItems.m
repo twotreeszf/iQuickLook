@@ -11,6 +11,12 @@
 
 #import "FileItems.h"
 
+typedef NS_ENUM(NSUInteger, GenerateThumbnailType)
+{
+    GTT_CPU,
+    GTT_GPU,
+};
+
 @implementation FileItem
 
 - (NSString*)name
@@ -22,11 +28,19 @@
 
 @interface FileItemsInFolder()
 {
-	NSOperation* _fetchThumbnailOpt;
+	NSMutableDictionary* _images4GenerateThumbnail;
+	
+	NSOperationQueue* _fetchThumbnailQueue;
 }
 
+
 - (NSString*)_thumbnailPathForFile: (FileItem*)file;
+
+- (FileItem*)_firstFileInFolder: (FileItem*)folder;
+- (NSString*)_thumbnailPathForFolder: (FileItem*)folder;
+
 - (UIImage*)_fetchFileThumbnail: (FileItem*)file;
+- (UIImage*)_generateFileThumbnail: (FileItem*)file : (GenerateThumbnailType)type;
 
 @end
 
@@ -37,6 +51,11 @@
 	self = [super init];
 	
 	_folderPath = folderPath;
+	
+	_images4GenerateThumbnail = [NSMutableDictionary new];
+	
+	_fetchThumbnailQueue = [NSOperationQueue new];
+	[_fetchThumbnailQueue setMaxConcurrentOperationCount:1];
 	
 	return self;
 }
@@ -74,71 +93,42 @@
 	return _fileItems;
 }
 
-- (void)fetchThumbnailsAsync:(FetchThumbnailResultBlock)block
+- (void)fetchThumbnailsAsyncForFiles: (NSArray*)files : (FetchThumbnailResultBlock)block;
 {
-	if ([_fetchThumbnailOpt isExecuting])
-		return;
+	[_fetchThumbnailQueue cancelAllOperations];
 	
 	NSBlockOperation* blockOpt = [NSBlockOperation new];
 	NSOperation* weakOpt = blockOpt;
 	
 	[blockOpt addExecutionBlock:^
-	{
-		for (FileItem* file in _fileItems)
-		{
-			if ([weakOpt isCancelled])
-				break;
-			
-			if ((file.isFolder && !file.folderCover) ||
-				(!file.isFolder && !file.fileThumbnail))
-			{
-				UIImage* thumbnail;
-				if (!file.isFolder)
-				{
-					thumbnail = [self _fetchFileThumbnail:file];
-				}
-				else
-				{
-					FileItemsInFolder* fileItems = [[FileItemsInFolder alloc] initWithFolderPath:file.path];
-					NSArray* files = [fileItems fileItems];
-					for (FileItem* file in files)
-					{
-						if (!file.isFolder)
-						{
-							NSAssert([file.path isImageExtension], nil);
-							
-							FileItem* firstFile = [files firstObject];
-							thumbnail = [self _fetchFileThumbnail:firstFile];
-							
-							break;
-						}
-					}
-				}
-				
-				if (thumbnail)
-				{
-					if (!file.isFolder)
-						file.fileThumbnail = thumbnail;
-					else
-						file.folderCover = thumbnail;
-					
-					[[NSOperationQueue mainQueue] addOperationWithBlock:^
-					 {
-						 block(file);
-					 }];
-				}
-			}
-		}
-	}];
+	 {
+		 for (FileItem* file in files)
+		 {
+			 if ([weakOpt isCancelled])
+				 break;
+			 
+			 if (!file.thumbnail)
+			 {
+				 file.thumbnail = [self _fetchFileThumbnail:file];
+				 if (!file.thumbnail)
+					 file.thumbnail = [self _generateFileThumbnail:file :GTT_CPU];
+				 
+				 X_ASSERT(file.thumbnail);
+				 if (file.thumbnail)
+					 [[NSOperationQueue mainQueue] addOperationWithBlock:^
+					  {
+						  block(file);
+					  }];
+			 }
+		 }
+	 }];
 	
-	[[NSOperationQueue globalQueue] addOperation:blockOpt];
-	
-	_fetchThumbnailOpt = blockOpt;
+	[_fetchThumbnailQueue addOperation:blockOpt];
 }
 
 - (void)cancelFetchThumbnails
 {
-	[_fetchThumbnailOpt cancel];
+	[_fetchThumbnailQueue cancelAllOperations];
 }
 
 - (NSString*)_thumbnailPathForFile: (FileItem*)file;
@@ -160,27 +150,83 @@
 	return thumbnailPath;
 }
 
-- (UIImage*)_fetchFileThumbnail: (FileItem*)file
+- (NSString*)_thumbnailPathForFolder: (FileItem*)folder
 {
-	NSString* thumbnailPath = [self _thumbnailPathForFile:file];
-	if (![[NSFileManager defaultManager] fileExistsAtPath:thumbnailPath])
+	FileItem* firstFile = [self _firstFileInFolder:folder];
+	
+	return [self _thumbnailPathForFile:firstFile];
+}
+
+- (FileItem*)_firstFileInFolder: (FileItem*)folder
+{
+	FileItem* firstFile;
+	
+	FileItemsInFolder* fileItems = [[FileItemsInFolder alloc] initWithFolderPath:folder.path];
+	NSArray* files = [fileItems fileItems];
+	for (FileItem* file in files)
 	{
-		UIImage* sourceImage = [UIImage imageWithContentsOfFile:file.path];
-		if (!sourceImage)
-			return nil;
-		
-		UIImage* destImage = [sourceImage vImageScaledImageForSquare:kThumbnailWidth];
-		if (!destImage)
-			return nil;
-		
-		NSData* destData = UIImagePNGRepresentation(destImage);
-		BOOL ret = [destData writeToFile:thumbnailPath atomically:YES];
-		if (!ret)
-			return nil;
+		if (!file.isFolder)
+		{
+			NSAssert([file.path isImageExtension], nil);
+			
+			firstFile = [files firstObject];
+		}
 	}
 	
-	NSAssert([[NSFileManager defaultManager] fileExistsAtPath:thumbnailPath], nil);
-	return [UIImage imageWithContentsOfFile:thumbnailPath];
+	return firstFile;
+}
+
+- (UIImage*)_fetchFileThumbnail: (FileItem*)file
+{
+	UIImage* thumbnail;
+	{
+		NSString* thumbnailPath = file.isFolder ? [self _thumbnailPathForFolder:file] : [self _thumbnailPathForFile:file];
+		if ([[NSFileManager defaultManager] fileExistsAtPath:thumbnailPath])
+		{
+			thumbnail = [UIImage imageWithContentsOfFile:thumbnailPath];
+			ERROR_CHECK_BOOL(thumbnail);
+		}
+	}
+	
+Exit0:
+	return thumbnail;
+}
+
+- (UIImage*)_generateFileThumbnail: (FileItem*)file : (GenerateThumbnailType)type;
+{
+	UIImage* thumbnail;
+	{
+		NSString* sourcePath;
+		FileItem* firstFileInFolder;
+		if (file.isFolder)
+		{
+			firstFileInFolder = [self _firstFileInFolder:file];
+			sourcePath = firstFileInFolder.path;
+		}
+		else
+			sourcePath = file.path;
+		
+		UIImage* sourceImage = [UIImage imageWithContentsOfFile:sourcePath];
+		ERROR_CHECK_BOOL(sourceImage);
+		
+		UIImage* destImage;
+		if (GTT_CPU == type)
+			destImage = [sourceImage vImageScaledImageForSquare:kThumbnailWidth :YES];
+		else
+			destImage = [sourceImage GPUImageLanczosScaledImageForSquare:kThumbnailWidth];
+		ERROR_CHECK_BOOL(destImage);
+		
+		NSData* destData = UIImagePNGRepresentation(destImage);
+		
+		NSString* thumbnailPath = file.isFolder ? [self _thumbnailPathForFile:firstFileInFolder] : [self _thumbnailPathForFile:file];
+		BOOL ret = [destData writeToFile:thumbnailPath atomically:YES];
+		ERROR_CHECK_BOOL(ret);
+		
+		thumbnail = destImage;
+	}
+	
+Exit0:
+	return thumbnail;
 }
 
 @end
