@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -19,7 +20,7 @@
             </objects>
             <point key="canvasLocation" x="-995" y="-106"/>
         </scene>
-        <!--File List FlatVC - Documents-->
+        <!--Documents-->
         <scene sceneID="3Pi-Se-owW">
             <objects>
                 <collectionViewController autoresizesArchivedViewToFullSize="NO" id="9Ex-Gr-33b" customClass="FileListFlatVC" sceneMemberID="viewController">
@@ -42,11 +43,9 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Folder.png" translatesAutoresizingMaskIntoConstraints="NO" id="CiN-Oq-R8k" userLabel="FolderFrameImage">
                                             <rect key="frame" x="0.0" y="0.0" width="154" height="154"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wYl-HY-4m3" userLabel="FolderCover">
                                             <rect key="frame" x="26" y="26" width="102" height="102"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="102" id="AGm-ZT-WHD"/>
                                                 <constraint firstAttribute="width" constant="102" id="YqI-M6-Q6X"/>
@@ -54,7 +53,6 @@
                                         </imageView>
                                         <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photos" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="6" preferredMaxLayoutWidth="154" translatesAutoresizingMaskIntoConstraints="NO" id="oxc-3X-XZX" userLabel="FolderNameLabel">
                                             <rect key="frame" x="0.0" y="114" width="154" height="40"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="CYl-86-x97"/>
                                             </constraints>
@@ -90,9 +88,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="154" height="154"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image.png" translatesAutoresizingMaskIntoConstraints="NO" id="TdZ-df-xil" userLabel="ThumbnailImage">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image.png" translatesAutoresizingMaskIntoConstraints="NO" id="TdZ-df-xil" userLabel="ThumbnailImage">
                                             <rect key="frame" x="0.0" y="0.0" width="154" height="154"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -115,7 +112,6 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Documents" id="aWy-ve-cZ0"/>
-                    <size key="freeformSize" width="320" height="568"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nmf-jJ-yha" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

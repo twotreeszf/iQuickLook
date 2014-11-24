@@ -133,16 +133,18 @@ typedef NS_ENUM(NSUInteger, GenerateThumbnailType)
 
 - (NSString*)_thumbnailPathForFile: (FileItem*)file;
 {
-	NSAssert([file.iNode length], nil);
+	X_ASSERT([file.iNode length]);
 	
 	NSString* fileInFolder = [file.path stringByDeletingLastPathComponent];
 	NSString* thumbnailFolder = [fileInFolder stringByAppendingPathComponent:kThumbnailFolderName];
 	if (![[NSFileManager defaultManager] fileExistsAtPath:thumbnailFolder])
 	{
+		NSError* error;
 		[[NSFileManager defaultManager] createDirectoryAtPath:thumbnailFolder
-								  withIntermediateDirectories:NO
+								  withIntermediateDirectories:YES
 												   attributes:nil
-														error:nil];
+														error:&error];
+		X_ASSERT(!error);
 	}
 	
 	NSString* thumbnailFileName = [NSString stringWithFormat:@"%@.png", file.iNode];

@@ -132,7 +132,7 @@
 - (void)_updateThumbnailFromVisibelCell
 {
 	NSArray* visibleCells = [self.collectionView visibleCells];
-	NSInteger firstCell = [visibleCells count];
+	NSInteger firstCell =  visibleCells.count ? _fileList.count : 0;
 	
 	for (UICollectionViewCell* cell in visibleCells)
 	{
