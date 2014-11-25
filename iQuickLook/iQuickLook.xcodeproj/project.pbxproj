@@ -22,7 +22,6 @@
 		7DFB96C119AD8634002E86EF /* iQuickLookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB96C019AD8634002E86EF /* iQuickLookTests.m */; };
 		7DFB96D119AD9A0F002E86EF /* FileListFlatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB96D019AD9A0F002E86EF /* FileListFlatVC.m */; };
 		7DFB96D619ADB4A7002E86EF /* Folder.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DFB96D419ADB4A7002E86EF /* Folder.png */; };
-		7DFB96D719ADB4A7002E86EF /* Image.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DFB96D519ADB4A7002E86EF /* Image.png */; };
 		7DFB96DA19ADB50B002E86EF /* FolderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB96D919ADB50B002E86EF /* FolderCell.m */; };
 		7DFB96DD19ADB51A002E86EF /* ImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB96DC19ADB51A002E86EF /* ImageCell.m */; };
 		7DFB96E119ADE969002E86EF /* NSOperationQueue+GlobalQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB96E019ADE969002E86EF /* NSOperationQueue+GlobalQueue.m */; };
@@ -81,7 +80,6 @@
 		7DFB96CF19AD9A0F002E86EF /* FileListFlatVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileListFlatVC.h; sourceTree = "<group>"; };
 		7DFB96D019AD9A0F002E86EF /* FileListFlatVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileListFlatVC.m; sourceTree = "<group>"; };
 		7DFB96D419ADB4A7002E86EF /* Folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Folder.png; sourceTree = "<group>"; };
-		7DFB96D519ADB4A7002E86EF /* Image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Image.png; sourceTree = "<group>"; };
 		7DFB96D819ADB50B002E86EF /* FolderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderCell.h; sourceTree = "<group>"; };
 		7DFB96D919ADB50B002E86EF /* FolderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderCell.m; sourceTree = "<group>"; };
 		7DFB96DB19ADB51A002E86EF /* ImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCell.h; sourceTree = "<group>"; };
@@ -244,7 +242,6 @@
 			isa = PBXGroup;
 			children = (
 				7DFB96D419ADB4A7002E86EF /* Folder.png */,
-				7DFB96D519ADB4A7002E86EF /* Image.png */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -386,7 +383,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DFB96AE19AD8634002E86EF /* Images.xcassets in Resources */,
-				7DFB96D719ADB4A7002E86EF /* Image.png in Resources */,
 				7DFB96D619ADB4A7002E86EF /* Folder.png in Resources */,
 				7DFB96A319AD8633002E86EF /* Main.storyboard in Resources */,
 				7DFB969A19AD8633002E86EF /* InfoPlist.strings in Resources */,

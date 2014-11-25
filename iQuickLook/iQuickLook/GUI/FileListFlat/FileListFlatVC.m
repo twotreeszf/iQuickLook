@@ -166,7 +166,7 @@
 		if (file.thumbnail)
 			imageCell.imageThumbnail.image = file.thumbnail;
 		else
-			imageCell.imageThumbnail.image = [UIImage imageNamed:@"Image.png"];
+			imageCell.imageThumbnail.image = [UIImage imageNamed:@"PhotoCover"];
 	}
 	else
 	{
