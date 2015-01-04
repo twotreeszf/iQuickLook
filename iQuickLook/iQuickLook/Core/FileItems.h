@@ -7,15 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FICEntity.h"
 
-@interface FileItem : NSObject
+@interface FileItem : NSObject <FICEntity>
 
 @property (nonatomic, copy)		NSString*	path;
 @property (nonatomic, readonly) NSString*	name;
 @property (nonatomic, copy)		NSString*	iNode;
-
 @property (nonatomic, assign)	BOOL		isFolder;
-@property (nonatomic, strong)	UIImage*	thumbnail;
 
 @end
 
@@ -29,7 +28,9 @@ typedef void (^FetchThumbnailResultBlock)(FileItem* file);
 
 - (instancetype)initWithFolderPath: (NSString*)folderPath;
 - (NSArray*)fileItems;
-- (void)fetchThumbnailsAsyncForFiles: (NSArray*)files : (FetchThumbnailResultBlock)block;
+- (UIImage*)thumbnailForFile: (FileItem*)file;
+
+- (void)fetchThumbnailsAsyncForFiles:(NSArray*)files resultBlock:(FetchThumbnailResultBlock)block;
 - (void)cancelFetchThumbnails;
 
 @end

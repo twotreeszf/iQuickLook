@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -41,7 +41,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="154" height="154"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Folder.png" translatesAutoresizingMaskIntoConstraints="NO" id="CiN-Oq-R8k" userLabel="FolderFrameImage">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Folder" translatesAutoresizingMaskIntoConstraints="NO" id="CiN-Oq-R8k" userLabel="FolderFrameImage">
                                             <rect key="frame" x="0.0" y="0.0" width="154" height="154"/>
                                         </imageView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wYl-HY-4m3" userLabel="FolderCover">
@@ -102,7 +102,7 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="imageThumbnail" destination="TdZ-df-xil" id="kmx-RP-zE4"/>
-                                    <segue destination="cQN-bP-8nO" kind="modal" identifier="PreviewImages" id="2mI-Gu-OcW"/>
+                                    <segue destination="TA7-ge-suC" kind="push" identifier="PreviewImages" id="Wxd-eG-Kyd"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -117,27 +117,28 @@
             </objects>
             <point key="canvasLocation" x="-459" y="-106"/>
         </scene>
-        <!--Image PreviewVC-->
-        <scene sceneID="fFg-sJ-8Pf">
+        <!--Photo Tile View Controller-->
+        <scene sceneID="chM-PX-FBR">
             <objects>
-                <viewController id="cQN-bP-8nO" customClass="ImagePreviewVC" sceneMemberID="viewController">
+                <viewController id="TA7-ge-suC" userLabel="Photo Tile View Controller" customClass="ImagePreviewVC" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="pRK-iG-EeJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="9iL-QE-SrA"/>
+                        <viewControllerLayoutGuide type="top" id="W2r-Xb-Zlb"/>
+                        <viewControllerLayoutGuide type="bottom" id="RZb-Pk-IAb"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="wyn-qn-I1d">
+                    <view key="view" contentMode="scaleToFill" id="qaS-0z-9ug">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="kft-hx-tOd"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e6R-k0-CBg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4QN-J5-t6L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="65" y="-106"/>
+            <point key="canvasLocation" x="6" y="-106"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Folder.png" width="154" height="154"/>
+        <image name="Folder" width="154" height="154"/>
         <image name="PhotoCover" width="154" height="154"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

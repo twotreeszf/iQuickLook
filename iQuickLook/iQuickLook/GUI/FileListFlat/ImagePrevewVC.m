@@ -7,7 +7,7 @@
 //
 
 #import "ImagePrevewVC.h"
-#import "Modal/FileItems.h"
+#import "FileItems.h"
 
 @interface ImagePreviewVC ()
 
