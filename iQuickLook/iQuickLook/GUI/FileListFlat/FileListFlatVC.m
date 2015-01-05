@@ -22,11 +22,13 @@
 {
 	FileItemsInFolder*	_filesInFolder;
 	NSArray*			_fileList;
+	BOOL				_isScrolling;
 }
 
 - (void)_reloadData;
 - (void)_updateThumbnailFromVisibelCell;
 - (void)_updateCellWithFileItem: (UICollectionViewCell*)cell : (FileItem*)file;
+- (BOOL)_isScrolling;
 
 @end
 
@@ -84,6 +86,33 @@
 	return cell;
 }
 
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+{
+	_isScrolling = YES;
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+	_isScrolling = YES;
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+	_isScrolling = NO;
+
+	[self _updateThumbnailFromVisibelCell];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+	if (!decelerate)
+	{
+		_isScrolling = NO;
+		
+		[self _updateThumbnailFromVisibelCell];
+	}
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	if ([segue.identifier isEqualToString:@"BrowseFolder"])
@@ -122,15 +151,34 @@
 
 - (void)_updateThumbnailFromVisibelCell
 {
-	__weak FileListFlatVC* weakSelf = self;
+	NSArray* visibleCells = [self.collectionView visibleCells];
+	NSInteger firstCell =  visibleCells.count ? _fileList.count : 0;
 	
-	[_filesInFolder fetchThumbnailsAsyncForFiles:_fileList resultBlock:^(FileItem *file)
-	 {
+	for (UICollectionViewCell* cell in visibleCells)
+	{
+		NSUInteger currentIndex = [self.collectionView indexPathForCell:cell].row;
+		if (currentIndex < firstCell)
+			firstCell = currentIndex;
+	}
+	
+	NSMutableArray* files2Update = [NSMutableArray new];
+	for (NSInteger i = firstCell; i < [_fileList count]; ++i)
+		[files2Update addObject:[_fileList objectAtIndex:i]];
+	
+	for (NSInteger i = firstCell - 1; i >= 0; --i)
+		[files2Update addObject:[_fileList objectAtIndex:i]];
+	
+	__weak FileListFlatVC* weakSelf = self;
+	[_filesInFolder fetchThumbnailsAsyncForFiles:files2Update resultBlock:^(FileItem *file)
+	{
+		if ([weakSelf _isScrolling])
+			return;
+		
 		 NSUInteger index = [_fileList indexOfObject:file];
 		 UICollectionViewCell* cell = [weakSelf.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
 		 if (cell)
-			 [self _updateCellWithFileItem:cell :file];
-	 }];
+			 [weakSelf _updateCellWithFileItem:cell :file];
+	}];
 }
 
 - (void)_updateCellWithFileItem: (UICollectionViewCell*)cell : (FileItem*)file
@@ -159,6 +207,11 @@
 				 imageView.image = image;
 		 }];
 	}
+}
+
+- (BOOL)_isScrolling
+{
+	return _isScrolling;
 }
 
 @end

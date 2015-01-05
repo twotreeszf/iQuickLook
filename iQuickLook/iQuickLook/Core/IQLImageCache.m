@@ -42,7 +42,6 @@
 	FICImageCache *sharedImageCache = [FICImageCache sharedImageCache];
 	[sharedImageCache setDelegate:self];
 	[sharedImageCache setFormats:@[ flatViewThumbmailFormat ]];
-	[sharedImageCache reset];
 }
 
 - (void)imageCache:(FICImageCache *)imageCache wantsSourceImageForEntity:(id <FICEntity>)entity withFormatName:(NSString *)formatName completionBlock:(FICImageRequestCompletionBlock)completionBlock
