@@ -59,30 +59,45 @@
 		contextBounds.size = contextSize;
 		CGContextClearRect(contextRef, contextBounds);
 		
-		// fill black
-		CGContextSetFillColorWithColor(contextRef, [[UIColor blackColor] CGColor]);
-		CGContextFillRect(contextRef, contextBounds);
-		
 		// draw image
+		CGFloat sideLen = contextSize.width;
 		CGFloat width = image.size.width;
 		CGFloat height = image.size.height;
-		
+
 		CGFloat destWidth;
 		CGFloat destHeight;
-		if (width < height)
+		if (!_isFolder)
 		{
-			destHeight = contextSize.width;
-			destWidth = (width / height) * destHeight;
+			if (width < height)
+			{
+				destHeight = sideLen;
+				destWidth = (width / height) * destHeight;
+			}
+			else
+			{
+				destWidth = sideLen;
+				destHeight = (height / width) * destWidth;
+			}
+			
 		}
 		else
 		{
-			destWidth = contextSize.width;
-			destHeight = (height / width) * destWidth;
+			if (width > height)
+			{
+				destHeight = sideLen;
+				destWidth = (width / height) * destHeight;
+			}
+			else
+			{
+				destWidth = sideLen;
+				destHeight = (height / width) * destWidth;
+			}
 		}
 		
 		UIGraphicsPushContext(contextRef);
-		[image drawInRect:CGRectMake(0, 0, destWidth, destHeight)];
+		[image drawInRect:CGRectMake((sideLen - destWidth) / 2.0, (sideLen - destHeight) / 2.0, destWidth, destHeight)];
 		UIGraphicsPopContext();
+
     };
 
     return drawingBlock;
@@ -165,9 +180,9 @@
 		if ([[FICImageCache sharedImageCache] imageExistsForEntity:file withFormatName:kFlatViewImageFormatName])
 			continue;
 		
-		[[FICImageCache sharedImageCache] asynchronouslyRetrieveImageForEntity:file
-																withFormatName:kFlatViewImageFormatName
-															   completionBlock:^(id<FICEntity> entity, NSString *formatName, UIImage *image)
+		[[FICImageCache sharedImageCache] retrieveImageForEntity:file
+												  withFormatName:kFlatViewImageFormatName
+												 completionBlock:^(id<FICEntity> entity, NSString *formatName, UIImage *image)
 		{
 			block(file);
 		}];
@@ -176,8 +191,7 @@
 
 - (void)cancelFetchThumbnails
 {
-	for (FileItem* file in _fileItems)
-		[[FICImageCache sharedImageCache] cancelImageRetrievalForEntity:file withFormatName:kFlatViewImageFormatName];
+	[[FICImageCache sharedImageCache] cancelAllImageRetrievals];
 }
 
 @end

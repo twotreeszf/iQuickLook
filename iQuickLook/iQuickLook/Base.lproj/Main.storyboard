@@ -45,19 +45,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="154" height="154"/>
                                         </imageView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wYl-HY-4m3" userLabel="FolderCover">
-                                            <rect key="frame" x="26" y="26" width="102" height="102"/>
+                                            <rect key="frame" x="26" y="18" width="102" height="102"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="102" id="AGm-ZT-WHD"/>
                                                 <constraint firstAttribute="width" constant="102" id="YqI-M6-Q6X"/>
                                             </constraints>
                                         </imageView>
-                                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photos" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="6" preferredMaxLayoutWidth="154" translatesAutoresizingMaskIntoConstraints="NO" id="oxc-3X-XZX" userLabel="FolderNameLabel">
+                                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photos" textAlignment="center" lineBreakMode="middleTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="6" preferredMaxLayoutWidth="154" translatesAutoresizingMaskIntoConstraints="NO" id="oxc-3X-XZX" userLabel="FolderNameLabel">
                                             <rect key="frame" x="0.0" y="114" width="154" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="CYl-86-x97"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
                                             <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
@@ -65,7 +64,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="wYl-HY-4m3" firstAttribute="top" secondItem="yMY-sa-Rnq" secondAttribute="top" constant="26" id="6Xq-50-0LA"/>
+                                    <constraint firstItem="wYl-HY-4m3" firstAttribute="top" secondItem="yMY-sa-Rnq" secondAttribute="top" constant="18" id="6Xq-50-0LA"/>
                                     <constraint firstItem="wYl-HY-4m3" firstAttribute="leading" secondItem="yMY-sa-Rnq" secondAttribute="leading" constant="26" id="80R-TF-Rnf"/>
                                     <constraint firstAttribute="trailing" secondItem="oxc-3X-XZX" secondAttribute="trailing" id="Dg3-J8-XHz"/>
                                     <constraint firstItem="CiN-Oq-R8k" firstAttribute="top" secondItem="yMY-sa-Rnq" secondAttribute="top" id="HI2-V4-I7M"/>

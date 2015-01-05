@@ -17,11 +17,12 @@
 
 #pragma mark Class Extension
 
-@interface FICImageTableEntry () {
-    FICImageTableChunk *_imageTableChunk;
-    void *_bytes;
+@interface FICImageTableEntry ()
+{
+    FICImageTableChunk* _imageTableChunk;
+    void* _bytes;
     size_t _length;
-    NSMutableArray *_deallocBlocks;
+    NSMutableArray* _deallocBlocks;
     NSInteger _index;
 }
 
@@ -39,93 +40,112 @@
 
 #pragma mark - Property Accessors
 
-- (size_t)imageLength {
+- (size_t)imageLength
+{
     return _length - sizeof(FICImageTableEntryMetadata);
 }
 
-- (CFUUIDBytes)entityUUIDBytes {
+- (CFUUIDBytes)entityUUIDBytes
+{
     return [self _metadata]->_entityUUIDBytes;
 }
 
-- (void)setEntityUUIDBytes:(CFUUIDBytes)entityUUIDBytes {
+- (void)setEntityUUIDBytes:(CFUUIDBytes)entityUUIDBytes
+{
     [self _metadata]->_entityUUIDBytes = entityUUIDBytes;
 }
 
-- (CFUUIDBytes)sourceImageUUIDBytes {
+- (CFUUIDBytes)sourceImageUUIDBytes
+{
     return [self _metadata]->_sourceImageUUIDBytes;
 }
 
-- (void)setSourceImageUUIDBytes:(CFUUIDBytes)sourceImageUUIDBytes {
+- (void)setSourceImageUUIDBytes:(CFUUIDBytes)sourceImageUUIDBytes
+{
     [self _metadata]->_sourceImageUUIDBytes = sourceImageUUIDBytes;
 }
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithImageTableChunk:(FICImageTableChunk *)imageTableChunk bytes:(void *)bytes length:(size_t)length {
+- (id)initWithImageTableChunk:(FICImageTableChunk*)imageTableChunk bytes:(void*)bytes length:(size_t)length
+{
     self = [super init];
-    
-    if (self != nil) {
+
+    if (self != nil)
+    {
         // Safety check
-        void *entryMax = bytes + length;
-        void *chunkMax = [imageTableChunk bytes] + [imageTableChunk length];
-        if (entryMax > chunkMax) {
+        void* entryMax = bytes + length;
+        void* chunkMax = [imageTableChunk bytes] + [imageTableChunk length];
+        if (entryMax > chunkMax)
+        {
             self = nil;
-        } else {
+        }
+        else
+        {
             _imageTableChunk = imageTableChunk;
             _bytes = bytes;
             _length = length;
             _deallocBlocks = [[NSMutableArray alloc] init];
         }
     }
-    
+
     return self;
 }
 
-- (void)executeBlockOnDealloc:(dispatch_block_t)block {
+- (void)executeBlockOnDealloc:(dispatch_block_t)block
+{
     [_deallocBlocks addObject:[block copy]];
 }
 
-- (void)dealloc {
-    for (dispatch_block_t block in _deallocBlocks) {
-        dispatch_async([FICImageCache dispatchQueue], block);
+- (void)dealloc
+{
+    for (dispatch_block_t block in _deallocBlocks)
+    {
+		[[FICImageCache operationQueue] addOperationWithBlock:block];
     }
 }
 
 #pragma mark - Other Accessors
 
-+ (NSInteger)metadataVersion {
++ (NSInteger)metadataVersion
+{
     return 8;
 }
 
-- (FICImageTableEntryMetadata *)_metadata {
-    return (FICImageTableEntryMetadata *)(_bytes + [self imageLength]);
+- (FICImageTableEntryMetadata*)_metadata
+{
+    return (FICImageTableEntryMetadata*)(_bytes + [self imageLength]);
 }
 
 #pragma mark - Flushing a Modified Image Table Entry
 
-- (void)flush {
+- (void)flush
+{
     int pageSize = [FICImageTable pageSize];
-    void *address = _bytes;
+    void* address = _bytes;
     size_t pageIndex = (size_t)address / pageSize;
-    void *pageAlignedAddress = (void *)(pageIndex * pageSize);
+    void* pageAlignedAddress = (void*)(pageIndex * pageSize);
     size_t bytesBeforeData = address - pageAlignedAddress;
     size_t bytesToFlush = (bytesBeforeData + _length);
     int result = msync(pageAlignedAddress, bytesToFlush, MS_SYNC);
-    
-    if (result) {
-        NSString *message = [NSString stringWithFormat:@"*** FIC Error: %s msync(%p, %ld) returned %d errno=%d", __PRETTY_FUNCTION__, pageAlignedAddress, bytesToFlush, result, errno];
+
+    if (result)
+    {
+        NSString* message = [NSString stringWithFormat:@"*** FIC Error: %s msync(%p, %ld) returned %d errno=%d", __PRETTY_FUNCTION__, pageAlignedAddress, bytesToFlush, result, errno];
         [self.imageCache _logMessage:message];
     }
 }
 
-- (void)preheat {
+- (void)preheat
+{
     int pageSize = [FICImageTable pageSize];
-    void *bytes = [self bytes];
+    void* bytes = [self bytes];
     NSUInteger length = [self length];
-    
+
     // Read a byte off of each VM page to force the kernel to page in the data
-    for (NSUInteger i = 0; i < length; i += pageSize) {
-        *((volatile uint8_t *)bytes + i);
+    for (NSUInteger i = 0; i < length; i += pageSize)
+    {
+        *((volatile uint8_t*)bytes + i);
     }
 }
 

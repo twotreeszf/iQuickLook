@@ -23,11 +23,6 @@
 		7DFB96A019AD8633002E86EF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB969F19AD8633002E86EF /* AppDelegate.m */; };
 		7DFB96A319AD8633002E86EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DFB96A119AD8633002E86EF /* Main.storyboard */; };
 		7DFB96AE19AD8634002E86EF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DFB96AD19AD8634002E86EF /* Images.xcassets */; };
-		7DFB96B519AD8634002E86EF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DFB96B419AD8634002E86EF /* XCTest.framework */; };
-		7DFB96B619AD8634002E86EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DFB968F19AD8633002E86EF /* Foundation.framework */; };
-		7DFB96B719AD8634002E86EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DFB969319AD8633002E86EF /* UIKit.framework */; };
-		7DFB96BF19AD8634002E86EF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DFB96BD19AD8634002E86EF /* InfoPlist.strings */; };
-		7DFB96C119AD8634002E86EF /* iQuickLookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB96C019AD8634002E86EF /* iQuickLookTests.m */; };
 		7DFB96D119AD9A0F002E86EF /* FileListFlatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB96D019AD9A0F002E86EF /* FileListFlatVC.m */; };
 		7DFB96DA19ADB50B002E86EF /* FolderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB96D919ADB50B002E86EF /* FolderCell.m */; };
 		7DFB96DD19ADB51A002E86EF /* ImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB96DC19ADB51A002E86EF /* ImageCell.m */; };
@@ -42,13 +37,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		7DFB96B819AD8634002E86EF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7DFB968419AD8633002E86EF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7DFB968B19AD8633002E86EF;
-			remoteInfo = iQuickLook;
-		};
 		7DFB972919B0707A002E86EF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7DFB972319B0707A002E86EF /* GPUImage.xcodeproj */;
@@ -97,7 +85,6 @@
 		7DFB969F19AD8633002E86EF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7DFB96A219AD8633002E86EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7DFB96AD19AD8634002E86EF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		7DFB96B319AD8634002E86EF /* iQuickLookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iQuickLookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DFB96B419AD8634002E86EF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		7DFB96BC19AD8634002E86EF /* iQuickLookTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iQuickLookTests-Info.plist"; sourceTree = "<group>"; };
 		7DFB96BE19AD8634002E86EF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -135,16 +122,6 @@
 				7DFB969219AD8633002E86EF /* CoreGraphics.framework in Frameworks */,
 				7DFB969419AD8633002E86EF /* UIKit.framework in Frameworks */,
 				7DFB969019AD8633002E86EF /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7DFB96B019AD8634002E86EF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7DFB96B519AD8634002E86EF /* XCTest.framework in Frameworks */,
-				7DFB96B719AD8634002E86EF /* UIKit.framework in Frameworks */,
-				7DFB96B619AD8634002E86EF /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,7 +175,6 @@
 			isa = PBXGroup;
 			children = (
 				7DFB968C19AD8633002E86EF /* iQuickLook.app */,
-				7DFB96B319AD8634002E86EF /* iQuickLookTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -338,24 +314,6 @@
 			productReference = 7DFB968C19AD8633002E86EF /* iQuickLook.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7DFB96B219AD8634002E86EF /* iQuickLookTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7DFB96C719AD8634002E86EF /* Build configuration list for PBXNativeTarget "iQuickLookTests" */;
-			buildPhases = (
-				7DFB96AF19AD8634002E86EF /* Sources */,
-				7DFB96B019AD8634002E86EF /* Frameworks */,
-				7DFB96B119AD8634002E86EF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7DFB96B919AD8634002E86EF /* PBXTargetDependency */,
-			);
-			name = iQuickLookTests;
-			productName = iQuickLookTests;
-			productReference = 7DFB96B319AD8634002E86EF /* iQuickLookTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -367,9 +325,6 @@
 				TargetAttributes = {
 					7DFB968B19AD8633002E86EF = {
 						DevelopmentTeam = SXKSDVK696;
-					};
-					7DFB96B219AD8634002E86EF = {
-						TestTargetID = 7DFB968B19AD8633002E86EF;
 					};
 				};
 			};
@@ -393,7 +348,6 @@
 			projectRoot = "";
 			targets = (
 				7DFB968B19AD8633002E86EF /* iQuickLook */,
-				7DFB96B219AD8634002E86EF /* iQuickLookTests */,
 			);
 		};
 /* End PBXProject section */
@@ -426,14 +380,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7DFB96B119AD8634002E86EF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7DFB96BF19AD8634002E86EF /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -462,23 +408,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7DFB96AF19AD8634002E86EF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7DFB96C119AD8634002E86EF /* iQuickLookTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		7DFB96B919AD8634002E86EF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7DFB968B19AD8633002E86EF /* iQuickLook */;
-			targetProxy = 7DFB96B819AD8634002E86EF /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		7DFB969819AD8633002E86EF /* InfoPlist.strings */ = {
@@ -615,46 +545,6 @@
 			};
 			name = Release;
 		};
-		7DFB96C819AD8634002E86EF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iQuickLook.app/iQuickLook";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iQuickLook/iQuickLook-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "iQuickLookTests/iQuickLookTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		7DFB96C919AD8634002E86EF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iQuickLook.app/iQuickLook";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iQuickLook/iQuickLook-Prefix.pch";
-				INFOPLIST_FILE = "iQuickLookTests/iQuickLookTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -672,15 +562,6 @@
 			buildConfigurations = (
 				7DFB96C519AD8634002E86EF /* Debug */,
 				7DFB96C619AD8634002E86EF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7DFB96C719AD8634002E86EF /* Build configuration list for PBXNativeTarget "iQuickLookTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7DFB96C819AD8634002E86EF /* Debug */,
-				7DFB96C919AD8634002E86EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

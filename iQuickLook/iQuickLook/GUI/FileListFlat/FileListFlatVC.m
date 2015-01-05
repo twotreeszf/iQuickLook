@@ -146,7 +146,7 @@
 		if (!file.isFolder)
 			imageView.image = [UIImage imageNamed:@"PhotoCover"];
 		else
-			imageView.image = [UIImage imageNamed:@"Folder"];
+			imageView.image = nil;
 	}
 	else
 	{

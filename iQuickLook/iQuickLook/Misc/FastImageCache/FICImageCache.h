@@ -46,9 +46,9 @@ typedef void (^FICImageRequestCompletionBlock)(UIImage *sourceImage);
  @return A shared instance of `FICImageCache`.
  
  @note Fast Image Cache can either be used as a singleton for convenience or can exist as multiple instances. However, all instances of `FICImageCache` will make use of
- shared resources, such as the same dispatch queue and the same location on disk for storing image tables.
+ shared resources, such as the same operation queue and the same location on disk for storing image tables.
  
- @see [FICImageCache dispatchQueue]
+ @see [FICImageCache operationQueue]
  */
 + (instancetype)sharedImageCache;
 
@@ -59,7 +59,7 @@ typedef void (^FICImageRequestCompletionBlock)(UIImage *sourceImage);
  
  @note All instances of `FICImageCache` make use a single, shared dispatch queue to do their work.
  */
-+ (dispatch_queue_t)dispatchQueue;
++ (NSOperationQueue*)operationQueue;
 
 ///---------------------------------
 /// @name Working with Image Formats
@@ -193,6 +193,8 @@ typedef void (^FICImageRequestCompletionBlock)(UIImage *sourceImage);
  method for the corresponding entity, if called, does nothing.
  */
 - (void)cancelImageRetrievalForEntity:(id <FICEntity>)entity withFormatName:(NSString *)formatName;
+
+- (void)cancelAllImageRetrievals;
     
 ///-----------------------------------
 /// @name Checking for Image Existence
@@ -272,6 +274,7 @@ typedef void (^FICImageRequestCompletionBlock)(UIImage *sourceImage);
  @see [FICImageCache cancelImageRetrievalForEntity:withFormatName:]
  */
 - (void)imageCache:(FICImageCache *)imageCache cancelImageLoadingForEntity:(id <FICEntity>)entity withFormatName:(NSString *)formatName;
+
 
 /**
  This method is called on the delegate to determine whether or not all formats in a family should be processed right now.
