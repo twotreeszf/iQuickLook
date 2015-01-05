@@ -107,17 +107,29 @@
 {
 	FileItem* firstFile;
 	
-	FileItemsInFolder* fileItems = [[FileItemsInFolder alloc] initWithFolderPath:self.path];
-	NSArray* files = [fileItems fileItems];
-	for (FileItem* file in files)
+	NSArray* fileNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:_path error:nil];
+	for (NSString* fileName in fileNames)
 	{
-		if (!file.isFolder)
-		{
-			NSAssert([file.path isImageExtension], nil);
-			
-			firstFile = [files firstObject];
-			break;
-		}
+		if ([fileName characterAtIndex:0] == '.')
+			continue;
+		
+		NSString* filePath = [_path stringByAppendingPathComponent:fileName];
+		NSDictionary* attrDic = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:nil];
+		
+		NSString* fileType = [attrDic fileType];
+		if (![NSFileTypeDirectory isEqualToString:fileType] && ![NSFileTypeRegular isEqualToString:fileType])
+			continue;
+		
+		if ([NSFileTypeRegular isEqualToString:fileType] && ![filePath isImageExtension])
+			continue;
+		
+		FileItem* item = [FileItem new];
+		item.isFolder = [NSFileTypeDirectory isEqualToString:fileType];
+		item.path = filePath;
+		item.iNode = [NSString stringWithFormat:@"%lu", (unsigned long)[attrDic fileSystemFileNumber]];
+		
+		firstFile = item;
+		break;
 	}
 	
 	return firstFile;
