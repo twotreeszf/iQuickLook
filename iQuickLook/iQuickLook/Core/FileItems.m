@@ -69,7 +69,7 @@
 		
 		CGFloat destWidth;
 		CGFloat destHeight;
-		if (width > height)
+		if (width < height)
 		{
 			destHeight = contextSize.width;
 			destWidth = (width / height) * destHeight;
@@ -79,7 +79,7 @@
 			destWidth = contextSize.width;
 			destHeight = (height / width) * destWidth;
 		}
-
+		
 		UIGraphicsPushContext(contextRef);
 		[image drawInRect:CGRectMake(0, 0, destWidth, destHeight)];
 		UIGraphicsPopContext();

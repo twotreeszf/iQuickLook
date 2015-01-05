@@ -28,7 +28,6 @@ typedef void (^FetchThumbnailResultBlock)(FileItem* file);
 
 - (instancetype)initWithFolderPath: (NSString*)folderPath;
 - (NSArray*)fileItems;
-- (UIImage*)thumbnailForFile: (FileItem*)file;
 
 - (void)fetchThumbnailsAsyncForFiles:(NSArray*)files resultBlock:(FetchThumbnailResultBlock)block;
 - (void)cancelFetchThumbnails;
