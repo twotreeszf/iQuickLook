@@ -6,14 +6,14 @@
 //
 //
 
-#import "ImagePrevewVC.h"
+#import "IQLImagePrevewVC.h"
 #import "FileItems.h"
 
-@interface ImagePreviewVC ()
+@interface IQLImagePreviewVC ()
 
 @end
 
-@implementation ImagePreviewVC
+@implementation IQLImagePreviewVC
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {

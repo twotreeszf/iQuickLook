@@ -15,6 +15,12 @@
 		7D26A32C1A596822007E421C /* FICUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D26A3261A596822007E421C /* FICUtilities.m */; };
 		7D26A3301A596EBE007E421C /* IQLImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D26A32F1A596EBE007E421C /* IQLImageCache.m */; };
 		7D26A3331A59705D007E421C /* FileItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D26A3311A59705D007E421C /* FileItems.m */; };
+		7D26A3491A5BF8E9007E421C /* WYPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D26A3461A5BF8E9007E421C /* WYPopoverController.m */; };
+		7D26A34A1A5BF8E9007E421C /* WYStoryboardPopoverSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D26A3481A5BF8E9007E421C /* WYStoryboardPopoverSegue.m */; };
+		7D26A3501A5BFF67007E421C /* IQLFileItemPopupMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D26A34F1A5BFF67007E421C /* IQLFileItemPopupMenu.m */; };
+		7D26A3531A5C0966007E421C /* UIView+UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D26A3511A5C0966007E421C /* UIView+UserData.m */; };
+		7D26A3581A5C0A12007E421C /* NSMutableArray+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D26A3551A5C0A12007E421C /* NSMutableArray+Queue.m */; };
+		7D26A3591A5C0A12007E421C /* NSMutableArray+Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D26A3571A5C0A12007E421C /* NSMutableArray+Stack.m */; };
 		7DFB969019AD8633002E86EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DFB968F19AD8633002E86EF /* Foundation.framework */; };
 		7DFB969219AD8633002E86EF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DFB969119AD8633002E86EF /* CoreGraphics.framework */; };
 		7DFB969419AD8633002E86EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DFB969319AD8633002E86EF /* UIKit.framework */; };
@@ -23,15 +29,15 @@
 		7DFB96A019AD8633002E86EF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB969F19AD8633002E86EF /* AppDelegate.m */; };
 		7DFB96A319AD8633002E86EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DFB96A119AD8633002E86EF /* Main.storyboard */; };
 		7DFB96AE19AD8634002E86EF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DFB96AD19AD8634002E86EF /* Images.xcassets */; };
-		7DFB96D119AD9A0F002E86EF /* FileListFlatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB96D019AD9A0F002E86EF /* FileListFlatVC.m */; };
-		7DFB96DA19ADB50B002E86EF /* FolderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB96D919ADB50B002E86EF /* FolderCell.m */; };
-		7DFB96DD19ADB51A002E86EF /* ImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB96DC19ADB51A002E86EF /* ImageCell.m */; };
+		7DFB96D119AD9A0F002E86EF /* IQLFileListFlatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB96D019AD9A0F002E86EF /* IQLFileListFlatVC.m */; };
+		7DFB96DA19ADB50B002E86EF /* IQLFolderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB96D919ADB50B002E86EF /* IQLFolderCell.m */; };
+		7DFB96DD19ADB51A002E86EF /* IQLImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB96DC19ADB51A002E86EF /* IQLImageCell.m */; };
 		7DFB96E119ADE969002E86EF /* NSOperationQueue+GlobalQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB96E019ADE969002E86EF /* NSOperationQueue+GlobalQueue.m */; };
 		7DFB96EB19ADFD75002E86EF /* NSString+Format.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB96EA19ADFD75002E86EF /* NSString+Format.m */; };
 		7DFB96EE19AE05E7002E86EF /* UIImage+vImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB96ED19AE05E7002E86EF /* UIImage+vImage.m */; };
 		7DFB96F019AE090C002E86EF /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DFB96EF19AE090C002E86EF /* Accelerate.framework */; };
 		7DFB96F219AEB637002E86EF /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DFB96F119AEB637002E86EF /* QuickLook.framework */; };
-		7DFB96F519AEB81A002E86EF /* ImagePrevewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB96F419AEB81A002E86EF /* ImagePrevewVC.m */; };
+		7DFB96F519AEB81A002E86EF /* IQLImagePrevewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB96F419AEB81A002E86EF /* IQLImagePrevewVC.m */; };
 		7DFB972D19B0709C002E86EF /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DFB972A19B0707A002E86EF /* libGPUImage.a */; };
 		7DFB973019B070DE002E86EF /* UIImage+GPUImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB972F19B070DE002E86EF /* UIImage+GPUImage.m */; };
 /* End PBXBuildFile section */
@@ -73,6 +79,18 @@
 		7D26A32F1A596EBE007E421C /* IQLImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQLImageCache.m; sourceTree = "<group>"; };
 		7D26A3311A59705D007E421C /* FileItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileItems.m; sourceTree = "<group>"; };
 		7D26A3321A59705D007E421C /* FileItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileItems.h; sourceTree = "<group>"; };
+		7D26A3451A5BF8E9007E421C /* WYPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPopoverController.h; sourceTree = "<group>"; };
+		7D26A3461A5BF8E9007E421C /* WYPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPopoverController.m; sourceTree = "<group>"; };
+		7D26A3471A5BF8E9007E421C /* WYStoryboardPopoverSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYStoryboardPopoverSegue.h; sourceTree = "<group>"; };
+		7D26A3481A5BF8E9007E421C /* WYStoryboardPopoverSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYStoryboardPopoverSegue.m; sourceTree = "<group>"; };
+		7D26A34E1A5BFF67007E421C /* IQLFileItemPopupMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQLFileItemPopupMenu.h; sourceTree = "<group>"; };
+		7D26A34F1A5BFF67007E421C /* IQLFileItemPopupMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQLFileItemPopupMenu.m; sourceTree = "<group>"; };
+		7D26A3511A5C0966007E421C /* UIView+UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+UserData.m"; sourceTree = "<group>"; };
+		7D26A3521A5C0966007E421C /* UIView+UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+UserData.h"; sourceTree = "<group>"; };
+		7D26A3541A5C0A12007E421C /* NSMutableArray+Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Queue.h"; sourceTree = "<group>"; };
+		7D26A3551A5C0A12007E421C /* NSMutableArray+Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Queue.m"; sourceTree = "<group>"; };
+		7D26A3561A5C0A12007E421C /* NSMutableArray+Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Stack.h"; sourceTree = "<group>"; };
+		7D26A3571A5C0A12007E421C /* NSMutableArray+Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Stack.m"; sourceTree = "<group>"; };
 		7DFB968C19AD8633002E86EF /* iQuickLook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iQuickLook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DFB968F19AD8633002E86EF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7DFB969119AD8633002E86EF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -89,12 +107,12 @@
 		7DFB96BC19AD8634002E86EF /* iQuickLookTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iQuickLookTests-Info.plist"; sourceTree = "<group>"; };
 		7DFB96BE19AD8634002E86EF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7DFB96C019AD8634002E86EF /* iQuickLookTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iQuickLookTests.m; sourceTree = "<group>"; };
-		7DFB96CF19AD9A0F002E86EF /* FileListFlatVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileListFlatVC.h; sourceTree = "<group>"; };
-		7DFB96D019AD9A0F002E86EF /* FileListFlatVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileListFlatVC.m; sourceTree = "<group>"; };
-		7DFB96D819ADB50B002E86EF /* FolderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderCell.h; sourceTree = "<group>"; };
-		7DFB96D919ADB50B002E86EF /* FolderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderCell.m; sourceTree = "<group>"; };
-		7DFB96DB19ADB51A002E86EF /* ImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCell.h; sourceTree = "<group>"; };
-		7DFB96DC19ADB51A002E86EF /* ImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCell.m; sourceTree = "<group>"; };
+		7DFB96CF19AD9A0F002E86EF /* IQLFileListFlatVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQLFileListFlatVC.h; sourceTree = "<group>"; };
+		7DFB96D019AD9A0F002E86EF /* IQLFileListFlatVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQLFileListFlatVC.m; sourceTree = "<group>"; };
+		7DFB96D819ADB50B002E86EF /* IQLFolderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQLFolderCell.h; sourceTree = "<group>"; };
+		7DFB96D919ADB50B002E86EF /* IQLFolderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQLFolderCell.m; sourceTree = "<group>"; };
+		7DFB96DB19ADB51A002E86EF /* IQLImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQLImageCell.h; sourceTree = "<group>"; };
+		7DFB96DC19ADB51A002E86EF /* IQLImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQLImageCell.m; sourceTree = "<group>"; };
 		7DFB96DF19ADE969002E86EF /* NSOperationQueue+GlobalQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOperationQueue+GlobalQueue.h"; sourceTree = "<group>"; };
 		7DFB96E019ADE969002E86EF /* NSOperationQueue+GlobalQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSOperationQueue+GlobalQueue.m"; sourceTree = "<group>"; };
 		7DFB96E919ADFD75002E86EF /* NSString+Format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Format.h"; sourceTree = "<group>"; };
@@ -103,8 +121,8 @@
 		7DFB96ED19AE05E7002E86EF /* UIImage+vImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+vImage.m"; sourceTree = "<group>"; };
 		7DFB96EF19AE090C002E86EF /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		7DFB96F119AEB637002E86EF /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
-		7DFB96F319AEB81A002E86EF /* ImagePrevewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePrevewVC.h; sourceTree = "<group>"; };
-		7DFB96F419AEB81A002E86EF /* ImagePrevewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePrevewVC.m; sourceTree = "<group>"; };
+		7DFB96F319AEB81A002E86EF /* IQLImagePrevewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQLImagePrevewVC.h; sourceTree = "<group>"; };
+		7DFB96F419AEB81A002E86EF /* IQLImagePrevewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQLImagePrevewVC.m; sourceTree = "<group>"; };
 		7DFB972319B0707A002E86EF /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = ../3rdParty/GPUImage/GPUImage.xcodeproj; sourceTree = "<group>"; };
 		7DFB972E19B070DE002E86EF /* UIImage+GPUImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GPUImage.h"; sourceTree = "<group>"; };
 		7DFB972F19B070DE002E86EF /* UIImage+GPUImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GPUImage.m"; sourceTree = "<group>"; };
@@ -159,6 +177,17 @@
 				7D26A32F1A596EBE007E421C /* IQLImageCache.m */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		7D26A3441A5BF8E9007E421C /* WYPopoverController */ = {
+			isa = PBXGroup;
+			children = (
+				7D26A3451A5BF8E9007E421C /* WYPopoverController.h */,
+				7D26A3461A5BF8E9007E421C /* WYPopoverController.m */,
+				7D26A3471A5BF8E9007E421C /* WYStoryboardPopoverSegue.h */,
+				7D26A3481A5BF8E9007E421C /* WYStoryboardPopoverSegue.m */,
+			);
+			path = WYPopoverController;
 			sourceTree = "<group>";
 		};
 		7DFB968319AD8633002E86EF = {
@@ -249,14 +278,16 @@
 		7DFB96CE19AD9A0F002E86EF /* FileListFlat */ = {
 			isa = PBXGroup;
 			children = (
-				7DFB96CF19AD9A0F002E86EF /* FileListFlatVC.h */,
-				7DFB96D019AD9A0F002E86EF /* FileListFlatVC.m */,
-				7DFB96D819ADB50B002E86EF /* FolderCell.h */,
-				7DFB96D919ADB50B002E86EF /* FolderCell.m */,
-				7DFB96DB19ADB51A002E86EF /* ImageCell.h */,
-				7DFB96DC19ADB51A002E86EF /* ImageCell.m */,
-				7DFB96F319AEB81A002E86EF /* ImagePrevewVC.h */,
-				7DFB96F419AEB81A002E86EF /* ImagePrevewVC.m */,
+				7DFB96CF19AD9A0F002E86EF /* IQLFileListFlatVC.h */,
+				7DFB96D019AD9A0F002E86EF /* IQLFileListFlatVC.m */,
+				7DFB96D819ADB50B002E86EF /* IQLFolderCell.h */,
+				7DFB96D919ADB50B002E86EF /* IQLFolderCell.m */,
+				7DFB96DB19ADB51A002E86EF /* IQLImageCell.h */,
+				7DFB96DC19ADB51A002E86EF /* IQLImageCell.m */,
+				7DFB96F319AEB81A002E86EF /* IQLImagePrevewVC.h */,
+				7DFB96F419AEB81A002E86EF /* IQLImagePrevewVC.m */,
+				7D26A34E1A5BFF67007E421C /* IQLFileItemPopupMenu.h */,
+				7D26A34F1A5BFF67007E421C /* IQLFileItemPopupMenu.m */,
 			);
 			path = FileListFlat;
 			sourceTree = "<group>";
@@ -271,6 +302,13 @@
 		7DFB96DE19ADE969002E86EF /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				7D26A3541A5C0A12007E421C /* NSMutableArray+Queue.h */,
+				7D26A3551A5C0A12007E421C /* NSMutableArray+Queue.m */,
+				7D26A3561A5C0A12007E421C /* NSMutableArray+Stack.h */,
+				7D26A3571A5C0A12007E421C /* NSMutableArray+Stack.m */,
+				7D26A3511A5C0966007E421C /* UIView+UserData.m */,
+				7D26A3521A5C0966007E421C /* UIView+UserData.h */,
+				7D26A3441A5BF8E9007E421C /* WYPopoverController */,
 				7D26A3171A596822007E421C /* FastImageCache */,
 				7DFB973219B096EE002E86EF /* ErrorCheck.h */,
 				7DFB96E919ADFD75002E86EF /* NSString+Format.h */,
@@ -320,7 +358,7 @@
 		7DFB968419AD8633002E86EF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = "";
+				CLASSPREFIX = IQL;
 				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					7DFB968B19AD8633002E86EF = {
@@ -390,20 +428,26 @@
 				7D26A3331A59705D007E421C /* FileItems.m in Sources */,
 				7DFB96EB19ADFD75002E86EF /* NSString+Format.m in Sources */,
 				7D26A3301A596EBE007E421C /* IQLImageCache.m in Sources */,
-				7DFB96F519AEB81A002E86EF /* ImagePrevewVC.m in Sources */,
+				7DFB96F519AEB81A002E86EF /* IQLImagePrevewVC.m in Sources */,
 				7DFB96A019AD8633002E86EF /* AppDelegate.m in Sources */,
 				7D26A3271A596822007E421C /* FICImageCache.m in Sources */,
+				7D26A3491A5BF8E9007E421C /* WYPopoverController.m in Sources */,
+				7D26A3581A5C0A12007E421C /* NSMutableArray+Queue.m in Sources */,
 				7DFB973019B070DE002E86EF /* UIImage+GPUImage.m in Sources */,
-				7DFB96DD19ADB51A002E86EF /* ImageCell.m in Sources */,
+				7DFB96DD19ADB51A002E86EF /* IQLImageCell.m in Sources */,
 				7DFB969C19AD8633002E86EF /* main.m in Sources */,
 				7D26A32A1A596822007E421C /* FICImageTableChunk.m in Sources */,
+				7D26A3591A5C0A12007E421C /* NSMutableArray+Stack.m in Sources */,
 				7D26A32C1A596822007E421C /* FICUtilities.m in Sources */,
 				7D26A3281A596822007E421C /* FICImageFormat.m in Sources */,
 				7DFB96E119ADE969002E86EF /* NSOperationQueue+GlobalQueue.m in Sources */,
-				7DFB96D119AD9A0F002E86EF /* FileListFlatVC.m in Sources */,
+				7D26A34A1A5BF8E9007E421C /* WYStoryboardPopoverSegue.m in Sources */,
+				7D26A3531A5C0966007E421C /* UIView+UserData.m in Sources */,
+				7DFB96D119AD9A0F002E86EF /* IQLFileListFlatVC.m in Sources */,
 				7D26A3291A596822007E421C /* FICImageTable.m in Sources */,
-				7DFB96DA19ADB50B002E86EF /* FolderCell.m in Sources */,
+				7DFB96DA19ADB50B002E86EF /* IQLFolderCell.m in Sources */,
 				7D26A32B1A596822007E421C /* FICImageTableEntry.m in Sources */,
+				7D26A3501A5BFF67007E421C /* IQLFileItemPopupMenu.m in Sources */,
 				7DFB96EE19AE05E7002E86EF /* UIImage+vImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

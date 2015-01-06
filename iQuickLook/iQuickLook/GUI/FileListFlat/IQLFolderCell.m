@@ -6,9 +6,9 @@
 //
 //
 
-#import "FolderCell.h"
+#import "IQLFolderCell.h"
 
-@implementation FolderCell
+@implementation IQLFolderCell
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {

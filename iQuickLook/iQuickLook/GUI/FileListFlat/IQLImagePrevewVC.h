@@ -8,7 +8,7 @@
 
 #import <QuickLook/QuickLook.h>
 
-@interface ImagePreviewVC : QLPreviewController <QLPreviewControllerDataSource>
+@interface IQLImagePreviewVC : QLPreviewController <QLPreviewControllerDataSource>
 
 @property (nonatomic, strong) NSArray* imageFiles;
 

@@ -11,10 +11,10 @@
 
 @interface FileItem : NSObject <FICEntity>
 
-@property (nonatomic, copy)		NSString*	path;
-@property (nonatomic, readonly) NSString*	name;
-@property (nonatomic, copy)		NSString*	iNode;
-@property (nonatomic, assign)	BOOL		isFolder;
+@property (nonatomic, copy)		NSString*		path;
+@property (nonatomic, readonly) NSString*		name;
+@property (nonatomic, copy)		NSString*		iNode;
+@property (nonatomic, assign)	BOOL			isFolder;
 
 @end
 
@@ -23,12 +23,11 @@ typedef void (^FetchThumbnailResultBlock)(FileItem* file);
 @interface FileItemsInFolder : NSObject
 {
 	NSString*			_folderPath;
-	NSMutableArray*		_fileItems;
 }
 
-- (instancetype)initWithFolderPath: (NSString*)folderPath;
-- (NSArray*)fileItems;
+@property (nonatomic, strong)	NSMutableArray* fileItems;
 
+- (instancetype)initWithFolderPath: (NSString*)folderPath;
 - (void)fetchThumbnailsAsyncForFiles:(NSArray*)files resultBlock:(FetchThumbnailResultBlock)block;
 - (void)cancelFetchThumbnails;
 

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ImageCell : UICollectionViewCell
+@interface IQLImageCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageThumbnail;
 

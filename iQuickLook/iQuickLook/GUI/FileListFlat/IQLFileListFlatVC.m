@@ -6,23 +6,25 @@
 //
 //
 
-
+#import "IQLFileListFlatVC.h"
+#import "FileItems.h"
+#import "IQLImageCell.h"
+#import "IQLFolderCell.h"
+#import "IQLImagePrevewVC.h"
+#import "FICImageCache.h"
+#import "IQLImageCache.h"
+#import "WYPopoverController.h"
+#import "IQLFileItemPopupMenu.h"
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-#import "FileListFlatVC.h"
-#import "FileItems.h"
-#import "ImageCell.h"
-#import "FolderCell.h"
-#import "ImagePrevewVC.h"
-#import "FICImageCache.h"
-#import "IQLImageCache.h"
-
-@interface FileListFlatVC ()
+@interface IQLFileListFlatVC () <IQLPopupMenuDelegate, WYPopoverControllerDelegate>
 {
-	FileItemsInFolder*	_filesInFolder;
-	NSArray*			_fileList;
-	BOOL				_isScrolling;
+	FileItemsInFolder*		_filesInFolder;
+	NSArray*				_fileList;
+	BOOL					_isScrolling;
+	NSIndexPath*			_selectCellIndex;
+	WYPopoverController*	_fileItemPopover;
 }
 
 - (void)_reloadData;
@@ -32,7 +34,7 @@
 
 @end
 
-@implementation FileListFlatVC
+@implementation IQLFileListFlatVC
 
 - (void)viewDidLoad
 {
@@ -40,7 +42,11 @@
 		self.folderPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 
 	_filesInFolder = [[FileItemsInFolder alloc] initWithFolderPath:self.folderPath];
-
+	
+	// attach long press gesture to collectionView
+	UILongPressGestureRecognizer* longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(onLongPressOnItem:)];
+	longPress.delaysTouchesBegan = YES;
+	[self.collectionView addGestureRecognizer:longPress];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -60,6 +66,51 @@
 	self.navigationItem.title = [_folderPath lastPathComponent];
 }
 
+- (void)onLongPressOnItem:(UILongPressGestureRecognizer *)sender
+{
+	if (_fileItemPopover)
+		return;
+	
+	CGPoint p = [sender locationInView:self.collectionView];
+	_selectCellIndex = [self.collectionView indexPathForItemAtPoint:p];
+	if (!_selectCellIndex)
+		return;
+	
+	IQLFileItemPopupMenu* menu = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"FileItemPoopupMenu"];
+	_fileItemPopover = [[WYPopoverController alloc] initWithContentViewController:menu];
+	_fileItemPopover.delegate = self;
+	
+	menu.popController = _fileItemPopover;
+	menu.delegate = self;
+	
+	[_fileItemPopover presentPopoverFromRect:[self.collectionView cellForItemAtIndexPath:_selectCellIndex].frame
+									  inView:self.collectionView
+					permittedArrowDirections:WYPopoverArrowDirectionLeft | WYPopoverArrowDirectionRight
+									animated:YES];
+}
+
+- (void)popoverControllerDidDismissPopover:(WYPopoverController *)popoverController
+{
+	_fileItemPopover = nil;
+}
+
+- (void)didSelectMenu: (UIView*)menuItem
+{
+	_fileItemPopover = nil;
+	
+	if ([[menuItem.userData valueForKey:@"ID"] isEqualToString:@"Delete"])
+	{
+		FileItem* file = _fileList[_selectCellIndex.row];
+		
+		[[NSFileManager defaultManager] removeItemAtPath:file.path error:nil];
+		
+		_filesInFolder.fileItems = nil;
+		[self _reloadData];
+	}
+	
+	_selectCellIndex = nil;
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
 	return [_fileList count];
@@ -72,12 +123,12 @@
 	FileItem* file = [_fileList objectAtIndex:indexPath.row];
 	if (!file.isFolder)
 	{
-		ImageCell* imageCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageCell" forIndexPath:indexPath];
+		IQLImageCell* imageCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageCell" forIndexPath:indexPath];
 		cell = imageCell;
 	}
 	else
 	{
-		FolderCell* folderCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FolderCell" forIndexPath:indexPath];
+		IQLFolderCell* folderCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FolderCell" forIndexPath:indexPath];
 		cell = folderCell;
 	}
 	
@@ -117,7 +168,7 @@
 {
 	if ([segue.identifier isEqualToString:@"BrowseFolder"])
 	{
-		FileListFlatVC* vc = (FileListFlatVC*)segue.destinationViewController;
+		IQLFileListFlatVC* vc = (IQLFileListFlatVC*)segue.destinationViewController;
 		
 		NSUInteger row = [self.collectionView indexPathForCell:sender].row;
 		FileItem* folder = [_fileList objectAtIndex:row];
@@ -126,7 +177,7 @@
 	}
 	else if ([segue.identifier isEqualToString:@"PreviewImages"])
 	{
-		ImagePreviewVC* vc = (ImagePreviewVC*)segue.destinationViewController;
+		IQLImagePreviewVC* vc = (IQLImagePreviewVC*)segue.destinationViewController;
 		
 		NSMutableArray* images = [NSMutableArray new];
 		for (FileItem* file in _fileList)
@@ -168,7 +219,7 @@
 	for (NSInteger i = firstCell - 1; i >= 0; --i)
 		[files2Update addObject:[_fileList objectAtIndex:i]];
 	
-	__weak FileListFlatVC* weakSelf = self;
+	__weak IQLFileListFlatVC* weakSelf = self;
 	[_filesInFolder fetchThumbnailsAsyncForFiles:files2Update resultBlock:^(FileItem *file)
 	{
 		if ([weakSelf _isScrolling])
@@ -185,9 +236,9 @@
 {
 	UIImageView* imageView;
 	if (!file.isFolder)
-		imageView = ((ImageCell*)cell).imageThumbnail;
+		imageView = ((IQLImageCell*)cell).imageThumbnail;
 	else
-		imageView = ((FolderCell*)cell).folderCover;
+		imageView = ((IQLFolderCell*)cell).folderCover;
 
 	if (![[FICImageCache sharedImageCache] imageExistsForEntity:file withFormatName:kFlatViewImageFormatName])
 	{

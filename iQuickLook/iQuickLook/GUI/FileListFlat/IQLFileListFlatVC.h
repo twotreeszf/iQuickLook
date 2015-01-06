@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FileListFlatVC : UICollectionViewController
+@interface IQLFileListFlatVC : UICollectionViewController
 
 @property (nonatomic, copy) NSString* folderPath;
 

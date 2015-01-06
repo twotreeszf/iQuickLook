@@ -6,9 +6,9 @@
 //
 //
 
-#import "ImageCell.h"
+#import "IQLImageCell.h"
 
-@implementation ImageCell
+@implementation IQLImageCell
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {

@@ -19,5 +19,8 @@
 #import "Misc/UIImage+vImage.h"
 #import "Misc/UIImage+GPUImage.h"
 #import "Misc/ErrorCheck.h"
+#import "Misc/NSMutableArray+Queue.h"
+#import "Misc/NSMutableArray+Stack.h"
+#import	"Misc/UIView+UserData.h"
 
 #endif

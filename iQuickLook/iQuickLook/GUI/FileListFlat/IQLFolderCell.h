@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FolderCell : UICollectionViewCell
+@interface IQLFolderCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *folderCover;
 @property (weak, nonatomic) IBOutlet UILabel *folderName;
