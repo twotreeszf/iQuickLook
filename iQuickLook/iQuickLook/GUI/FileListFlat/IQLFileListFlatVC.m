@@ -83,7 +83,10 @@
 	menu.popController = _fileItemPopover;
 	menu.delegate = self;
 	
-	[_fileItemPopover presentPopoverFromRect:[self.collectionView cellForItemAtIndexPath:_selectCellIndex].frame
+	CGRect cellRect = [self.collectionView cellForItemAtIndexPath:_selectCellIndex].frame;
+	CGRect centerRect = CGRectMake(cellRect.origin.x + cellRect.size.width / 2.0, cellRect.origin.y + cellRect.size.height / 2.0, 1.0, 1.0);
+	
+	[_fileItemPopover presentPopoverFromRect:centerRect
 									  inView:self.collectionView
 					permittedArrowDirections:WYPopoverArrowDirectionLeft | WYPopoverArrowDirectionRight
 									animated:YES];
