@@ -42,7 +42,11 @@
 	if (!_imagePath)
 	{
 		if (_isFolder)
-			_imagePath = [NSURL fileURLWithPath:[self _firstFileInFolder].path];
+		{
+			FileItem* firstFile = [self _firstFileInFolder];
+			if (firstFile)
+				_imagePath = [NSURL fileURLWithPath:firstFile.path];
+		}
 		else
 			_imagePath = [NSURL fileURLWithPath:_path];
 	}
